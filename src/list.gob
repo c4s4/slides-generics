@@ -1,0 +1,15 @@
+package main
+
+import "container/list"
+
+func main() {
+	list := &list.List{}
+	list.PushBack(1)
+	list.PushBack(2)
+	list.PushBack(3)
+	sum := 0
+	for e := list.Front(); e != nil; e = n.Next() {
+		sum += e.Value
+	}
+	println(sum)
+}
