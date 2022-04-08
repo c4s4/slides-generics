@@ -4,6 +4,7 @@ Michel Casabianca
 
 casa@sweetohm.net
 
+<http://sweetohm.net/slides/slides-generics/>
 ---
 ## Avant Go 1.18
 
