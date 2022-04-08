@@ -7,7 +7,7 @@ casa@sweetohm.net
 ---
 ## Avant Go 1.18
 
-Il a toujours été possible d'écrire du code générique en Go à l'aide du type **interface{}**. Par exemple, pour on peut écrire une fonction qui affiche *n* fois une valeur quelconque avec :
+Il a toujours été possible d'écrire du code générique en Go à l'aide du type **interface{}**. Par exemple, on peut écrire une fonction qui affiche *n* fois une valeur quelconque avec :
 
 ```go
 <? INCLUDE src/interface.go ?>
@@ -17,7 +17,7 @@ Il a toujours été possible d'écrire du code générique en Go à l'aide du ty
 Cet exemple est particulièrement simple car la fonction `fmt.Println()` accepte tout type. Avant Go *1.18*, sa signature était : `func Println(a ...interface{}) (n int, err error)`.
 
 ---
-D'autre part, on peut définir le type d'un argument avec une interface. Par exemple:
+D'autre part, on peut définir le type d'un argument avec une interface spécifique. Par exemple:
 
 ```go
 <? INCLUDE src/interface2.go ?>
@@ -36,12 +36,12 @@ Supposons que nous voulions écrire une fonction qui renvoie le maximum de deux 
 ```
 [Sur le Playground](https://go.dev/play/p/MeVme43ZZon)
 
-Si nous voulons généraliser cette fonction à d'autres types, les interfaces ne nous sont pas d'un grand secours car aucune fonction ne définit les opérateurs de comparaison. Nous devrons donc **réécrire cette fonction pour tous les types** ! Il serait possible d'accepter en entrée le type `interface{}` mais nous devons alors faire des **assertions sur les types** et cela ne simplifiera pas les chose.
+Si nous voulons généraliser cette fonction à d'autres types, les interfaces ne nous sont pas d'un grand secours car aucune fonction ne définit les opérateurs de comparaison. Nous devrons donc **réécrire cette fonction pour tous les types** ! Il serait possible d'accepter en entrée le type `interface{}` mais nous devons alors faire des **assertions sur les types** et cela ne simplifierait pas les chose.
 
 ---
 ## Les Generics à la rescousse
 
-Go *1.18* implémente les Generics. On peut maintenant ajouter des paramètres de type (*type parameters* en anglais) à la signature de fonction. Pour pouvoir rendre notre fonction `Max()` plus générique, nous pourrions écrire :
+Go *1.18* implémente les *Generics*. On peut maintenant ajouter des paramètres de type (*type parameters* en anglais) à la signature d'une fonction. Pour pouvoir rendre notre fonction `Max()` générique, nous pourrions écrire :
 
 ```go
 <? INCLUDE src/maxgenerics.go ?>
@@ -61,7 +61,7 @@ Il est aussi possible à partir de Go *1.18* de définir des interfaces comme un
 [Sur le Playground](https://go.dev/play/p/pq2kbXNwZpV)
 
 ---
-## Les alias
+## Les alias de types
 
 Si nous définissons un alias pour un type, nous pouvons l'englober dans une liste avec le caractère `~`, comme suit :
 
@@ -98,14 +98,14 @@ Il est possible de passer le type d'argument lors de l'appel d'une fonction gén
 m := Max[int](1, 2)
 ```
 
-L'expression `Max[int]` est une instantiation de la fonction `Max`. Elle fixe les types des paramètres. On peut par exemple écrire :
+L'expression `Max[int]` est une *instantiation* de la fonction générique `Max`. Elle fixe les types des paramètres. On peut par exemple écrire :
 
 ```go
 MaxFloat := Max[float64]
 m := MaxFloat(1.0, 2.0)
 ```
 
-La fonction `MaxFloat` est maintenant une fonction non générique qui ne peut prendre que des paramètres `float`.
+La fonction `MaxFloat` est maintenant une fonction non générique qui n'accepte que des paramètres de type `float`.
 
 ---
 ## Types avec paramètres de type
@@ -191,7 +191,7 @@ Dans ce cas, le compilateur sait le type des paramètres parce qu'on lui indique
 m := Max(1, 2)
 ```
 
-Le compilateur **infère le type des paramètres** de la fonction générique de celui des paramètres lors de l'appel. Ce type d'inférence est appelé en anglais *function argument type inference*. Ce type d'inférence ne peut pas fonctionner inférer le type de retour, comme pour la fonction :
+Le compilateur **infère le type des paramètres** de la fonction générique de celui des arguments lors de l'appel. Ce type d'inférence est appelé en anglais *function argument type inference*. Cependant, il est parfois impossible d'inférer le type de la valeur de retour, comme pour la fonction :
 
 ```go
 func NewT[T any]() *T {
@@ -199,9 +199,15 @@ func NewT[T any]() *T {
 }
 ```
 
+Il faudra alors aider le compilateur en procédant à l'*instanciation* de la fonction avant l'appel :
+
+```go
+t := NewT[int]()
+```
+
 ---
 ## Conclusion
 
 Les génériques sont la grande nouveauté du Go *1.18* qui est la release qui a amené le plus de changements depuis que le Go est Open Source. Cependant, cette fonctionnalité n'a pas été encore assez utilisée en production par un grand nombre d'utilisateurs et doit donc être **utilisée avec précaution**, et bien sûr largement couverte de tests.
 
-![Mad Gopher](img/gopher.png)
+![Generics Gopher](img/gopher.png)
