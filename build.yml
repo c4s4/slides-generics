@@ -7,7 +7,7 @@ configuration: '~/.neon/github.yml'
 # GITHUB_TOKEN: 'abcdefghijklmnopqrstuvwxyz0123456789'
 
 properties:
-  TITLE:   'Go Generics'
+  TITLE:   'Les Génériques en Go'
   #OPTIONS: '{ratio: "4:3"}'
   OPTIONS: "{ratio: '16:9'}"
   INCLUDES: true

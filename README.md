@@ -1,4 +1,4 @@
-# Go Generics
+# Les Génériques en Go
 
 Michel Casabianca
 
