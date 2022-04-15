@@ -2,7 +2,9 @@
 
 Michel Casabianca
 
-casa@sweetohm.net
+michel.casabianca@intercloud.com
+
+![](img/generics.png)
 
 <https://sweetohm.net/slides/slides-generics/>
 ---
@@ -85,10 +87,20 @@ Il peut être laborieux de définir ainsi ses propres interfaces avec des listes
 - **Signed** : *~int | ~int8 | ~int16 | ~int32 | ~int64*
 - **Unsigned** : *~uint | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~uintptr*
 
+D'autre part, Go *1.18* définit deux autres contraintes :
+
+- **any** qui est identique à `interface{}`
+- **comparable** pour les types qui peuvent être comparés avec les opérateurs `==` et `!=`
+
+---
+Nous pouvons alors utiliser la *contrainte* *constraints.Ordered* comme suit :
+
 ```go
 <? INCLUDE src/maxgenerics4.go ?>
 ```
-[Sur le Playground](https://go.dev/play/p/6-B_UhnjlkF)
+[Sur le Playground](https://go.dev/play/p/LqSD9iOBQJX)
+
+![](img/menottes.png)
 
 ---
 ## Instantiation
