@@ -207,6 +207,15 @@ t := NewT[int]()
 ```
 
 ---
+## Quand utiliser les Generics ?
+
+La première recommandation est de ne **jamais définir des contraintes avant d'écrire le code**. Cela peut sembler séduisant d'anticiper et de commencer par définir des contraintes, mais c'est inutile.
+
+![](img/boussole.png)
+
+Le cas d'usage des génériques est de factoriser du **code identique dupliqué avec plusieurs types**. C'est une alternative préférables à l'utilisation du type `interface{}` pour des questions de performance, d'occupation mémoire et de simplicité du code. Le cas d'usage typique est celui des structures de données.
+
+---
 ## Conclusion
 
 Les génériques sont la grande nouveauté du Go *1.18* qui est la release qui a amené le plus de changements depuis que le Go est Open Source. Cependant, cette fonctionnalité n'a pas été encore assez utilisée en production par un grand nombre d'utilisateurs et doit donc être **utilisée avec précaution**, et bien sûr largement couverte de tests.
