@@ -118,7 +118,7 @@ MaxFloat := Max[float64]
 m := MaxFloat(1.0, 2.0)
 ```
 
-La fonction `MaxFloat` est maintenant une fonction non générique qui n'accepte que des paramètres de type `float`.
+La fonction `MaxFloat` est maintenant une fonction non générique qui n'accepte que des paramètres de type `float64`.
 
 ---
 ## Types avec paramètres de type
