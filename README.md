@@ -130,7 +130,7 @@ Supposons que nous voulions faire la somme des valeurs des éléments d'une list
 ```
 [Sur le Playground](https://go.dev/play/p/CLY7xgTdKWs)
 
-Cela ne compile pas car on ne peut faire une somme avec le type `interface{}` qui est celui de la valeur des éléments d'une liste : `src/list.go:12:3: invalid operation: sum += e.Value (mismatched types int and any)`. On remarquera au passage que `any` est le nouveau nom pour `interface{}`.
+Cela ne compile pas car on ne peut faire une somme avec le type `interface{}` qui est celui de la valeur des éléments d'une liste : `src/list.go:12:3: invalid operation: sum += e.Value (mismatched types int and any)`.
 
 ---
 Utiliser le type `interface{}` ou `any` est ennuyeux car nous devons caster les valeurs pour pouvoir les utiliser. Il y a bien sûr une solution à base de Generics. Voici une implémentation minimaliste de liste avec des génériques :
