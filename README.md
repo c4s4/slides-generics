@@ -2,7 +2,7 @@
 
 Michel Casabianca
 
-michel.casabianca@intercloud.com
+casa@sweetohm.net
 
 ![](img/generics.png)
 
